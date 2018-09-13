@@ -1,15 +1,16 @@
 const React = require('react');
 
 const nanostyled = (tag, styleProps) => {
-  let Chemical = props => {
+  let Component = props => {
     let { css, filteredProps } = Object.keys(styleProps).reduce(
       (memo, key, index) => {
-        memo.css.push(props[key] || styleProps[key]);
+        let style = props[key] || styleProps[key];
+        if (style) memo.css.push(style);
         delete memo.filteredProps[key];
         return memo;
       },
       {
-        css: [],
+        css: [props.className].filter(Boolean),
         filteredProps: Object.assign({}, props),
       }
     );
@@ -20,8 +21,10 @@ const nanostyled = (tag, styleProps) => {
     });
     return React.createElement(props.tag || tag, passedProps);
   };
-  Chemical.displayName = `nanostyled-${tag}`;
-  return Chemical;
+
+  Component.displayName = `nanostyled-${tag}`;
+
+  return Component;
 };
 
 module.exports = nanostyled;

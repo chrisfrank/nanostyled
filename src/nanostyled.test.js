@@ -36,6 +36,12 @@ describe('a button', () => {
     done();
   });
 
+  it('passes props.className', async done => {
+    let div = await renderDiv(Button, { className: 'custom' });
+    expect(div.querySelector('button').className).toEqual('custom ma3 ph3');
+    done();
+  });
+
   describe('with a tag prop', () => {
     it('renders the custom tag instead of the default', async done => {
       let div = await renderDiv(Button, { tag: 'a' });
