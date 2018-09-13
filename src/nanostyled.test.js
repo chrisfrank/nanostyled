@@ -24,16 +24,24 @@ describe('a button', () => {
     expect(Button.displayName).toEqual('nanostyled-button');
   });
 
-  it('overwrites designProps with element props', async done => {
-    let div = await renderDiv(Button, { margin: 'ma1', padding: 'pa1' });
-    expect(div.querySelector('button').className).toEqual('ma1 pa1');
-    done();
-  });
-
   it('filters style props from DOM attributes', async done => {
     let div = await renderDiv(Button);
     expect(div.querySelector('button').getAttribute('margin')).toEqual(null);
     done();
+  });
+
+  describe('with custom style props', () => {
+    it('overwrites styleprops with truthy custom props', async done => {
+      let div = await renderDiv(Button, { margin: 'ma1', padding: 'pa1' });
+      expect(div.querySelector('button').className).toEqual('ma1 pa1');
+      done();
+    });
+
+    it('overwrites styleprops with falsy custom props', async done => {
+      let div = await renderDiv(Button, { margin: null, padding: 'pa1' });
+      expect(div.querySelector('button').className).toEqual('pa1');
+      done();
+    });
   });
 
   it('passes props.className', async done => {

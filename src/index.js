@@ -4,7 +4,7 @@ const nanostyled = (tag, styleProps) => {
   let Component = props => {
     let { css, filteredProps } = Object.keys(styleProps).reduce(
       (memo, key, index) => {
-        let style = props[key] || styleProps[key];
+        let style = props[key] === undefined ? styleProps[key] : props[key];
         if (style) memo.css.push(style);
         delete memo.filteredProps[key];
         return memo;
