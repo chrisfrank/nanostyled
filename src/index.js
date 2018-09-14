@@ -1,4 +1,4 @@
-const React = require('react');
+import React from 'react';
 
 const nanostyled = (tag, styleProps) => {
   let Component = props => {
@@ -26,4 +26,4 @@ const nanostyled = (tag, styleProps) => {
   return Component;
 };
 
-module.exports = nanostyled;
+export default nanostyled;

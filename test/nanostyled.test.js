@@ -1,6 +1,6 @@
-const React = require('react');
-const TestRenderer = require('react-test-renderer');
-const styled = require('../src');
+import React from 'react';
+import TestRenderer from 'react-test-renderer';
+import styled from '../src';
 
 const renderJSON = (Component, props) =>
   TestRenderer.create(React.createElement(Component, props)).toJSON();
@@ -40,6 +40,12 @@ describe('a button', () => {
   it('passes props.className', () => {
     let res = renderJSON(Button, { className: 'custom' });
     expect(res.props.className).toEqual('custom ma3 ph3');
+  });
+
+  it('passes props.style', () => {
+    let style = { whiteSpace: 'nowrap' };
+    let res = renderJSON(Button, { style });
+    expect(res.props.style).toEqual(style);
   });
 
   describe('with a tag prop', () => {

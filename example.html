@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nanostyled Example</title>
+    <style>
+      .sans { font-family: sans-serif; }
+      .serif { font-family: georgia, serif; }
+      .mono { font-family: menlo, monaco, monospace; }
+      .f1 { font-size: 4rem; }
+      .f2 { font-size: 2rem; }
+      .f3 { font-size: 1.5rem; }
+      .f4 { font-size: 1rem; }
+      .fw7 { font-weight: 700; }
+
+      .black { color: black; }
+      .gray { color: #666; }
+      .red { color: #993333; }
+      .bg-black { background: black }
+      .bg-gray { background: gray; }
+      .bg-light-gray { background: #eee; }
+
+      .bordered { border: 2px solid; }
+      .space-sm {
+        margin: 1em auto;
+        padding: 1em;
+      }
+      .space-lg {
+        margin: 2em auto;
+        padding: 2em;
+      }
+      .block { display: block; }
+    </style>
+    <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="dist/index.js"></script>
+  </head>
+  <body>
+    <div id="react-root"></div>
+    <script type="text/babel">
+      const Heading = nanostyled('header', {
+        size: 'f1',
+        weight: 'fw7',
+        color: 'black',
+        font: 'sans',
+      });
+
+      const Text = nanostyled('article', {
+        size: 'f2',
+        weight: 'fw4',
+        color: 'gray',
+        font: 'serif',
+      });
+
+      const Box = nanostyled('figure', {
+        border: 'bordered',
+        space: 'space-sm',
+      });
+
+      const Code = nanostyled('code', {
+        font: 'mono',
+        bg: 'bg-light-gray',
+        color: 'black',
+        display: 'block',
+        space: 'space-sm',
+      });
+
+      const App = () => (
+        <article>
+          <Heading size="f3" style={{ margin: '2em 0 0' }}>
+            Nanostyled
+          </Heading>
+          <Box>
+            <Heading>I am a Heading component</Heading>
+            <Code>
+              {`<Heading>I am a Heading component</Heading>`}
+            </Code>
+          </Box>
+          <Box>
+            <Text>I am a Text component</Text>
+            <Code>
+              {`<Text>I am a Text component</Text>`}
+            </Code>
+          </Box>
+          <Box>
+            <Heading tag="h2" size="f2" color="red">
+              I am a customized Heading component
+            </Heading>
+            <Code style={{ whiteSpace: 'pre-line' }}>
+              {`<Heading tag="h2" size="f2" color="red">
+                I am a customized Heading component
+              </Heading>`}
+            </Code>
+          </Box>
+          <Box>
+          <Text color="black" size="f3" font="sans">
+            I am a customized Text component
+          </Text>
+            <Code style={{ whiteSpace: 'pre-line' }}>
+            {`<Text color="black" size="f3" font="sans">
+              I am a customized Text component
+              </Text>`}
+            </Code>
+          </Box>
+        </article>
+      );
+      ReactDOM.render(<App />, document.getElementById('react-root'));
+    </script>
+  </body>
+</html>

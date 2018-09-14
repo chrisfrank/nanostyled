@@ -2,11 +2,13 @@
   "name": "nanostyled",
   "version": "0.1.0",
   "description": "Build props-controlled, CSS-in-JS-like components using just functional CSS. Pairs well with tachyons, tailwindcss, etc.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "jest",
     "bench": "NODE_ENV=production node test/benchmark.js",
-    "precommit": "lint-staged && npm run test"
+    "build": "rollup -c",
+    "precommit": "npm run build && lint-staged && npm run test",
+    "start": "parcel example.html",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -32,14 +34,18 @@
   "author": "Chris Frank",
   "license": "MIT",
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
     "benchmark": "^2.1.4",
     "husky": "^0.14.3",
     "jest": "^23.6.0",
     "lint-staged": "^7.2.2",
+    "parcel-bundler": "^1.9.7",
     "prettier": "^1.14.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-test-renderer": "^16.5.1",
+    "rollup": "^0.65.2",
+    "rollup-plugin-babel": "^4.0.3",
     "styled-components": "^4.0.0-beta.4"
   },
   "peerDependencies": {
