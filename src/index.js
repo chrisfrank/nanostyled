@@ -23,7 +23,6 @@ const nanostyled = (tag, styleProps) => {
   };
 
   Component.displayName = `nanostyled-${tag}`;
-
   return Component;
 };
 

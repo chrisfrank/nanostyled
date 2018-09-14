@@ -1,6 +1,6 @@
 const React = require('react');
 const { render } = require('react-dom');
-const styled = require('./index');
+const styled = require('../src');
 
 const renderDiv = async (Component, props) => {
   let div = document.createElement('div');
