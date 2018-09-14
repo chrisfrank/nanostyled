@@ -35,12 +35,12 @@
     "benchmark": "^2.1.4",
     "husky": "^0.14.3",
     "jest": "^23.6.0",
-    "jsdom": "^12.0.0",
     "lint-staged": "^7.2.2",
     "prettier": "^1.14.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
-    "styled-components": "^3.4.6"
+    "react-test-renderer": "^16.5.1",
+    "styled-components": "^4.0.0-beta.4"
   },
   "peerDependencies": {
     "react": ">= 15"

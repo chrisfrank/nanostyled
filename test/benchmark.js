@@ -1,11 +1,8 @@
 const React = require('react');
-const { JSDOM } = require('jsdom');
-const { renderToString } = require('react-dom/server');
+const TestRenderer = require('react-test-renderer');
 const bm = require('benchmark');
 const styled = require('styled-components');
 const nanostyled = require('../src');
-
-const dom = new JSDOM('');
 
 const NanoButton = nanostyled('button', {
   padding: 'ph3',
@@ -25,19 +22,14 @@ const StyledButton = styled.default.button({
   },
 });
 
-const props = { children: 'Click Me' };
-
-const testDiv = () => dom.window.document.createElement('div');
+const renderButton = button =>
+  TestRenderer.create(React.createElement(button, { children: 'Click Me' }));
 
 let suite = new bm.Suite();
 
-suite.add('nanostyled', () =>
-  renderToString(React.createElement(NanoButton, props), testDiv())
-);
+suite.add('nanostyled', () => renderButton(NanoButton));
 
-suite.add('sc', () =>
-  renderToString(React.createElement(StyledButton, props), testDiv())
-);
+suite.add('sc', () => renderButton(StyledButton));
 
 suite.on('cycle', function(event) {
   console.log(String(event.target));
