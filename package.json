@@ -7,7 +7,6 @@
     "bench": "NODE_ENV=production node test/benchmark.js",
     "build": "rollup -c",
     "precommit": "npm run build && lint-staged && npm run test",
-    "start": "parcel example.html",
     "test": "jest"
   },
   "repository": {
