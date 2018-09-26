@@ -1,12 +1,12 @@
-import React from 'react';
-import TestRenderer from 'react-test-renderer';
-import styled from '../src';
+const React = require('react');
+const TestRenderer = require('react-test-renderer');
+const { nanostyled } = require('../index');
 
 const renderJSON = (Component, props) =>
   TestRenderer.create(React.createElement(Component, props)).toJSON();
 
 describe('a button', () => {
-  let Button = styled('button', {
+  let Button = nanostyled('button', {
     margin: 'ma3',
     padding: 'ph3',
   });
