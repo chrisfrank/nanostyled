@@ -1,7 +1,7 @@
 {
   "name": "nanostyled",
   "version": "0.1.0",
-  "description": "CSS-in-JS-like React components, styled with just CSS",
+  "description": "A < 1kb library for building styled React components. CSS-in-JS-style APIs without CSS in JS",
   "main": "index.js",
   "scripts": {
     "bench": "NODE_ENV=production node test/benchmark.js",
@@ -42,7 +42,7 @@
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-test-renderer": "^16.5.1",
-    "styled-components": "^4.0.0-beta.4"
+    "styled-components": "^4.0.0-beta.9"
   },
   "peerDependencies": {
     "react": ">= 15"
