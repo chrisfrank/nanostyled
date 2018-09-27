@@ -1,6 +1,6 @@
 const React = require('react');
 const TestRenderer = require('react-test-renderer');
-const { nanostyled } = require('../index');
+const nanostyled = require('../index');
 
 const renderJSON = (Component, props) =>
   TestRenderer.create(React.createElement(Component, props)).toJSON();

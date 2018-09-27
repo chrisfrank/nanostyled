@@ -15,7 +15,7 @@ Unlike a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead, it's 
 
 ```jsx
 // import nanostyled
-import { nanostyled } from 'nanostyled';
+import nanostyled from 'nanostyled';
 // import a functional-CSS framework
 import 'tachyons/css/tachyons.css';
 

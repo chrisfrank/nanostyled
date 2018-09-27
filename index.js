@@ -26,7 +26,4 @@ const nanostyled = (tag, styleProps) => {
   return Component;
 };
 
-module.exports = {
-  default: nanostyled,
-  nanostyled: nanostyled,
-};
+module.exports = nanostyled;

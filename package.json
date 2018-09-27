@@ -5,13 +5,20 @@
   "main": "index.js",
   "scripts": {
     "bench": "NODE_ENV=production node test/benchmark.js",
-    "build:example": "browserify example/_window.js > example/_browserified.js --ig",
-    "precommit": "npm run build:example && npm run test && lint-staged",
-    "test": "jasmine test/nanostyled.test.js"
+    "precommit": "npm run test && lint-staged",
+    "prepublishOnly": "npm run build",
+    "test": "jasmine test/nanostyled.test.js",
+    "build": "NODE_ENV=production browserify index.js > dist/nanostyled.umd.js --standalone nanostyled --external react"
+  },
+  "browserify": {
+    "transform": [ "browserify-shim" ]
+  },
+  "browserify-shim": {
+    "react": "global:React"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/chrisfrank/nanostyled"
+    "url": "https://www.github.com/chrisfrank/nanostyled"
   },
   "lint-staged": {
     "**/*.{js,jsx,jsxon,css,md}": [
@@ -35,6 +42,7 @@
   "devDependencies": {
     "benchmark": "^2.1.4",
     "browserify": "^16.2.3",
+    "browserify-shim": "^3.8.14",
     "husky": "^0.14.3",
     "jasmine": "^3.2.0",
     "jest": "^23.6.0",
