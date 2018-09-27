@@ -11,7 +11,13 @@ Like a CSS-in-JS library (e.g. the excellent [styled-components][styled-componen
 
 Unlike a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead, it's designed to accompany a functional CSS framework like [Tachyons][tachyons] or [Tailwind][tailwind].
 
-## Styling with nanostyled
+## Install
+
+```
+npm install nanostyled
+```
+
+## Use
 
 ```jsx
 // import nanostyled
