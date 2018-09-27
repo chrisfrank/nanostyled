@@ -53,7 +53,7 @@ Rendering that app will produce this HTML markup:
 
 ## Nanostyled solves two practical issues with using functional-CSS.
 
-### 1. Ugly, verbose markup
+### Problem 1: Ugly, verbose markup
 
 The basic premise of a functional CSS framework is that you build components by chaining tiny CSS classes.
 
@@ -82,12 +82,12 @@ const Button = ({ className = '', ...props }) => (
 );
 
 // Now you get clean markup throughout your app
-<Button>Nice Looking Button</Button>;
+// <Button>Nice Looking Button</Button>
 ```
 
 **But fixing the verbosity problem by making a component creates a second problem**.
 
-### 2. It's hard to override default styles
+### Problem 2: It's hard to override default styles
 
 We've hard-coded a blue background into our `<Button>` component in problem 1. What if we want a red background?
 
@@ -113,14 +113,14 @@ const Button = nanostyled('button', {
   base: 'text-white font-bold py-2 px-4 rounded',
 });
 
-// <Button>Blue</Button> renders to
+// <Button>Blue</Button> renders this markup:
 // <button class="bg-blue text-white font-bold py-2 px-4 rounded">Blue</button>
 //
-// <Button bg="bg-red">Red</Button> renders to
+// <Button bg="bg-red">Red</Button> renders this markup:
 // <button class="bg-red text-white font-bold py-2 px-4 rounded">Blue</button>
 ```
 
-The props you decide to use for styling are totally up to you. In the `<Button>` above, there's not a good way to change a button's font weight (or anything else in the `base` prop) without rewriting the whole `base` prop every time you want to tweak something. A more flexible Button API might look like this:
+The props you decide to use for styling are up to you. In the `<Button>` above, there's no good way to change a button's font weight (or anything else in the `base` prop) without rewriting the whole `base` prop every time you want to tweak something. A more flexible Button API might look like this:
 
 ```jsx
 const Button = nanostyled('button', {
