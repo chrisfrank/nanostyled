@@ -1,7 +1,7 @@
 {
   "name": "nanostyled",
   "version": "0.1.0",
-  "description": "A < 1kb library for building styled React components. CSS-in-JS-style APIs without CSS in JS",
+  "description": "A < 1kb library for building styled React components, with CSS-in-JS-like APIs, without CSS in JS",
   "main": "index.js",
   "scripts": {
     "bench": "NODE_ENV=production node test/benchmark.js",
