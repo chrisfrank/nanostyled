@@ -44,19 +44,22 @@ const Button = nanostyled('button', {
 // Use your styled button in your app:
 const App = () => (
   <main>
-    // This button will render with all classes you specified above:
+    {// This button will render with all classes you specified above:}
     <Button>Click Me</Button>
 
-    // When you want to change some of the classes, you just pass new
-    // values to the style props you declared.
-    // Here's a button with a red background and black text:
+    {/*
+    When you want to change some of the classes, you just pass new values to the
+    style props you declared. Here's a red button with black text:
+    */}
     <Button bg="bg-red" color="black" weight={null}>
       Red Button
     </Button>
 
-    // If you want to render a Button as an <a> tag, use the special 'tag' prop.
-    // All other props -- apart from 'tag' and the ones you used for styling --
-    // are passed straight to the DOM. Here's a link with an href:
+    {/*
+    If you want to render a Button as an <a> tag, use the special 'tag' prop.
+    All other props -- apart from 'tag' and the ones you used for styling --
+    are passed straight to the DOM. Here's a link with an href:
+    */}
     <Button tag="a" href="#somwhere">
       Link, styled like a buttton
     </Button>
@@ -150,11 +153,13 @@ const Button = nanostyled('button', {
   base: 'text-white font-bold py-2 px-4 rounded',
 });
 
-// <Button>Blue</Button> renders this markup:
-// <button class="bg-blue text-white font-bold py-2 px-4 rounded">Blue</button>
-//
-// <Button bg="bg-red">Red</Button> renders this markup:
-// <button class="bg-red text-white font-bold py-2 px-4 rounded">Blue</button>
+/*
+<Button>Blue</Button> renders this markup:
+<button class="bg-blue text-white font-bold py-2 px-4 rounded">Blue</button>
+
+<Button bg="bg-red">Red</Button> renders this markup:
+<button class="bg-red text-white font-bold py-2 px-4 rounded">Blue</button>
+*/
 ```
 
 The props you decide to use for styling are up to you. In the `<Button>` above,
