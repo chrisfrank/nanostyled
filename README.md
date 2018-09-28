@@ -44,14 +44,14 @@ const Button = nanostyled('button', {
 // Use your styled button in your app:
 const App = () => (
   <main>
-    {// This button will render with all classes you specified above:}
+    {/* This button will render with all classes you specified above: */}
     <Button>Click Me</Button>
 
     {/*
     When you want to change some of the classes, you just pass new values to the
     style props you declared. Here's a red button with black text:
     */}
-    <Button bg="bg-red" color="black" weight={null}>
+    <Button bg="bg-red" color="black">
       Red Button
     </Button>
 
@@ -115,8 +115,10 @@ const Button = ({ className = '', ...props }) => (
   />
 );
 
-// Now you get clean markup throughout your app
-// <Button>Nice Looking Button</Button>
+/*
+Now you get clean markup throughout your app
+<Button>Nice Looking Button</Button>
+*/
 ```
 
 **But fixing the verbosity problem by making a component creates a second
