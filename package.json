@@ -17,7 +17,7 @@
     "url": "https://www.github.com/chrisfrank/nanostyled"
   },
   "lint-staged": {
-    "**/*.{js,jsx,jsxon,css,md}": [
+    "{index.js,README.md,test/*.js}": [
       "prettier --single-quote --write --trailing-comma es5",
       "git add"
     ]
