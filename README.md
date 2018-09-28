@@ -1,15 +1,21 @@
 # Nanostyled
 
-Nanostyled is a tiny library (< 1 Kb unminified) for building styled React components.
+Nanostyled is a tiny library (< 1 Kb unminified) for building styled React
+components.
 
-Like a CSS-in-JS library (e.g. the excellent [styled-components][styled-components]), nanostyled lets you build UI elements with default styles, then tweak those styles throughout your app via component props:
+Like a CSS-in-JS library (e.g. the excellent
+[styled-components][styled-components]), nanostyled lets you build UI elements
+with default styles, then tweak those styles throughout your app via component
+props:
 
 ```jsx
 <Button>A nice-looking button</Button>
 <Button color="blue">A nice-looking button that is also blue.</Button>
 ```
 
-_Unlike_ a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead, it's designed to accompany a functional CSS framework like [Tachyons][tachyons] or [Tailwind][tailwind].
+_Unlike_ a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead,
+it's designed to accompany a functional CSS framework like [Tachyons][tachyons]
+or [Tailwind][tailwind].
 
 ## Install
 
@@ -70,21 +76,25 @@ Rendering the example `<App>` above will produce this HTML markup:
 </main>
 ```
 
-Peruse `example.html` in the repo for an example with many nanostyled components.
+Peruse `example.html` in the repo for an example with many nanostyled
+components.
 
 ## Nanostyled solves two practical issues with using functional-CSS.
 
 ### Problem 1: Ugly, verbose markup
 
-The basic premise of a functional CSS framework is that you build components by chaining tiny CSS classes.
+The basic premise of a functional CSS framework is that you build components by
+chaining tiny CSS classes.
 
-A styled `<button>` element, using classes from [tailwind.css][tailwind], looks like this in JSX:
+A styled `<button>` element, using classes from [tailwind.css][tailwind], looks
+like this in JSX:
 
 ```jsx
 <button class="bg-blue text-white font-bold py-2 px-4 rounded">Click Me</button>
 ```
 
-That's a button with a blue background, white text, bold font, some padding, and rounded corners.
+That's a button with a blue background, white text, bold font, some padding, and
+rounded corners.
 
 > ### holy hell this is the worst thing I've ever seen
 >
@@ -106,11 +116,13 @@ const Button = ({ className = '', ...props }) => (
 // <Button>Nice Looking Button</Button>
 ```
 
-**But fixing the verbosity problem by making a component creates a second problem**.
+**But fixing the verbosity problem by making a component creates a second
+problem**.
 
 ### Problem 2: It's hard to override default styles
 
-We've hard-coded a blue background into our `<Button>` component in problem 1. What if we want a red background?
+We've hard-coded a blue background into our `<Button>` component in problem 1.
+What if we want a red background?
 
 We could try using a className:
 
@@ -118,15 +130,19 @@ We could try using a className:
 <Button className="bg-red">Red?</Button>
 ```
 
-But `bg-red` won't replace `bg-blue` in the rendered HTML. They'll just both render:
+But `bg-red` won't replace `bg-blue` in the rendered HTML. They'll just both
+render:
 
 ```html
 <button class="bg-blue text-white font-bold py-2 px-4 rounded bg-red">Red?</button>
 ```
 
-With both CSS classes present, we don't know which one will apply without looking at the CSS. The button might be blue; it might be red; we don't know. Madness.
+With both CSS classes present, we don't know which one will apply without
+looking at the CSS. The button might be blue; it might be red; we don't know.
+Madness.
 
-By using `nanostyled` to explicitly map props to CSS classes, this problem goes away.
+By using `nanostyled` to explicitly map props to CSS classes, this problem goes
+away.
 
 ```jsx
 const Button = nanostyled('button', {
@@ -141,7 +157,10 @@ const Button = nanostyled('button', {
 // <button class="bg-red text-white font-bold py-2 px-4 rounded">Blue</button>
 ```
 
-The props you decide to use for styling are up to you. In the `<Button>` above, there's no good way to change a button's font weight (or anything else in the `base` prop) without rewriting the whole `base` prop every time you want to tweak something. A more flexible Button API might look like this:
+The props you decide to use for styling are up to you. In the `<Button>` above,
+there's no good way to change a button's font weight (or anything else in the
+`base` prop) without rewriting the whole `base` prop every time you want to
+tweak something. A more flexible Button API might look like this:
 
 ```jsx
 const Button = nanostyled('button', {
@@ -165,11 +184,13 @@ Now any of these props can be overridden with alternative CSS classes:
 
 ### UMD
 
-You can load `dist/nanostyled.umd.js` to make `window.nanostyled` available in a browser.
+You can load `dist/nanostyled.umd.js` to make `window.nanostyled` available in a
+browser.
 
 ### CJS
 
-In an environment that doesn't support ES6 modules, you can require the CJS build:
+In an environment that doesn't support ES6 modules, you can require the CJS
+build:
 
 ```js
 const nanostyled = require('nanostyled/dist/nanostyled.cjs.js');
@@ -177,7 +198,8 @@ const nanostyled = require('nanostyled/dist/nanostyled.cjs.js');
 
 ## Performance
 
-In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~ 1.5x more quickly than a similar Button built with styled-components.
+In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~
+1.5x more quickly than a similar Button built with styled-components.
 
 ## Related Projects
 
@@ -186,6 +208,7 @@ In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~ 
 - [Styled Components][styled-components]
 
 [styled-components]: https://www.styled-components.com/
-[adam-wathan]: https://adamwathan.me/css-utility-classes-and-separation-of-concerns/
+[adam-wathan]:
+  https://adamwathan.me/css-utility-classes-and-separation-of-concerns/
 [tachyons]: http://tachyons.io/
 [tailwind]: https://tailwindcss.com/
