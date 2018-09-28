@@ -17,6 +17,21 @@ _Unlike_ a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead,
 it's designed to accompany a functional CSS framework like [Tachyons][tachyons]
 or [Tailwind][tailwind].
 
+---
+
+- [Install](#install)
+- [Use](#use)
+- [Why?](#why)
+  - [Problem 1: Ugly, verbose markup](#problem-1-ugly-verbose-markup)
+  - [Problem 2: It's hard to override default styles](#problem-2-its-hard-to-override-default-styles)
+- [UMD and CJS builds:](#umd-and-cjs-builds)
+  - [UMD](#umd)
+  - [CJS](#cjs)
+- [Performance](#performance)
+- [Related Projects](#related-projects)
+
+---
+
 ## Install
 
 ```
@@ -82,7 +97,10 @@ Rendering the example `<App>` above will produce this HTML markup:
 Peruse `example.html` in the repo for an example with many nanostyled
 components.
 
-## Nanostyled solves two practical issues with using functional-CSS.
+## Why?
+
+Nanostyled aims to solve the only two issues I've had with using functonal CSS
+frameworks in large projects:
 
 ### Problem 1: Ugly, verbose markup
 
@@ -99,9 +117,8 @@ like this in JSX:
 That's a button with a blue background, white text, bold font, some padding, and
 rounded corners.
 
-> ### holy hell this is the worst thing I've ever seen
->
-> [Adam Wathan][adam-wathan], creator of Tailwind
+> “holy hell this is the worst thing I've ever seen” -[Adam
+> Wathan][adam-wathan], creator of Tailwind
 
 So true.
 
@@ -121,13 +138,12 @@ Now you get clean markup throughout your app
 */
 ```
 
-**But fixing the verbosity problem by making a component creates a second
-problem**.
+But fixing the verbosity problem by making a components creates a new problem.
 
 ### Problem 2: It's hard to override default styles
 
-We've hard-coded a blue background into our `<Button>` component in problem 1.
-What if we want a red background?
+We hard-coded a blue background into our `<Button>` component in problem 1. What
+if we want a red background?
 
 We could try using a className:
 
@@ -135,7 +151,7 @@ We could try using a className:
 <Button className="bg-red">Red?</Button>
 ```
 
-But `bg-red` won't replace `bg-blue` in the rendered HTML. They'll just both
+But `bg-red` won't replace `bg-blue` in the rendered HTML. Both classes will
 render:
 
 ```html
@@ -143,8 +159,8 @@ render:
 ```
 
 With both CSS classes present, we don't know which one will apply without
-looking at the CSS. The button might be blue; it might be red; we don't know.
-Madness.
+looking at the CSS to see which one is defined last. The button might be blue;
+it might be red; we don't know.
 
 By using `nanostyled` to explicitly map props to CSS classes, this problem goes
 away.
@@ -152,7 +168,7 @@ away.
 ```jsx
 const Button = nanostyled('button', {
   bg: 'bg-blue',
-  base: 'text-white font-bold py-2 px-4 rounded',
+  className: 'text-white font-bold py-2 px-4 rounded',
 });
 
 /*
@@ -166,7 +182,7 @@ const Button = nanostyled('button', {
 
 The props you decide to use for styling are up to you. In the `<Button>` above,
 there's no good way to change a button's font weight (or anything else in the
-`base` prop) without rewriting the whole `base` prop every time you want to
+`base` prop) without rewriting the whole `className` prop every time you want to
 tweak something. A more flexible Button API might look like this:
 
 ```jsx
@@ -182,8 +198,13 @@ const Button = nanostyled('button', {
 Now any of these props can be overridden with alternative CSS classes:
 
 ```jsx
-<Button bg="bg-purple" color="text-yellow" weight="font-normal" radius={null}>
-  A purple and yellow button with normal weight font and sharp corners
+<Button
+  bg="bg-purple"
+  color="text-yellow"
+  weight={null}
+  className="my extra classes"
+>
+  A purple and yellow button with unspecified font weight and some extra classes
 </Button>
 ```
 
@@ -193,6 +214,8 @@ Now any of these props can be overridden with alternative CSS classes:
 
 You can load `dist/nanostyled.umd.js` to make `window.nanostyled` available in a
 browser.
+
+The UMD build is also available on [unpkg][unpkg]: https://unpkg.com/nanostyled
 
 ### CJS
 
@@ -219,3 +242,4 @@ In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~
   https://adamwathan.me/css-utility-classes-and-separation-of-concerns/
 [tachyons]: http://tachyons.io/
 [tailwind]: https://tailwindcss.com/
+[unpkg]: https://unpkg.com/
