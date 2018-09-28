@@ -1,20 +1,16 @@
 {
   "name": "nanostyled",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A < 1kb library for building styled React components, with CSS-in-JS-like APIs, without CSS in JS",
   "main": "index.js",
+  "unpkg": "dist/nanostyled.umd.js",
   "scripts": {
     "bench": "NODE_ENV=production node test/benchmark.js",
-    "precommit": "npm run test && lint-staged",
-    "prepublishOnly": "npm run build",
+    "precommit": "npm run build && npm run test && lint-staged",
     "test": "jasmine test/nanostyled.test.js",
-    "build": "NODE_ENV=production browserify index.js > dist/nanostyled.umd.js --standalone nanostyled --external react"
-  },
-  "browserify": {
-    "transform": [ "browserify-shim" ]
-  },
-  "browserify-shim": {
-    "react": "global:React"
+    "build:umd": "rollup index.js --file dist/nanostyled.umd.js --format umd --name nanostyled",
+    "build:cjs": "rollup index.js --file dist/nanostyled.cjs.js --format cjs",
+    "build": "npm run build:umd && npm run build:cjs"
   },
   "repository": {
     "type": "git",
@@ -22,7 +18,7 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,jsxon,css,md}": [
-      "prettier --single-quote --write --trailing-comma es5 **/*.js",
+      "prettier --single-quote --write --trailing-comma es5",
       "git add"
     ]
   },
@@ -51,6 +47,7 @@
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-test-renderer": "^16.5.1",
+    "rollup": "^0.66.2",
     "styled-components": "^4.0.0-beta.9"
   },
   "peerDependencies": {

@@ -9,7 +9,7 @@ Like a CSS-in-JS library (e.g. the excellent [styled-components][styled-componen
 <Button color="blue">A nice-looking button that is also blue.</Button>
 ```
 
-Unlike a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead, it's designed to accompany a functional CSS framework like [Tachyons][tachyons] or [Tailwind][tailwind].
+_Unlike_ a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead, it's designed to accompany a functional CSS framework like [Tachyons][tachyons] or [Tailwind][tailwind].
 
 ## Install
 
@@ -25,7 +25,8 @@ import nanostyled from 'nanostyled';
 // import a functional-CSS framework
 import 'tachyons/css/tachyons.css';
 
-// Create a button by assigning your framework's CSS class names to props:
+// Create a styled <Button> by mapping classes from your CSS framework
+// onto props on your component:
 const Button = nanostyled('button', {
   bg: 'bg-blue',
   color: 'white',
@@ -34,28 +35,42 @@ const Button = nanostyled('button', {
   radius: 'br3',
 });
 
-// render some buttons!
+// Use your styled button in your app:
 const App = () => (
   <main>
-    // Use the button somewhere else in your app
+    // This button will render with all classes you specified above:
     <Button>Click Me</Button>
-    // Render a variant with a red background, black text, and no specifed font
-    weight
+
+    // When you want to change some of the classes, you just pass new
+    // values to the style props you declared.
+    // Here's a button with a red background and black text:
     <Button bg="bg-red" color="black" weight={null}>
       Red Button
+    </Button>
+
+    // If you want to render a Button as an <a> tag, use the special 'tag' prop.
+    // All other props -- apart from 'tag' and the ones you used for styling --
+    // are passed straight to the DOM. Here's a link with an href:
+    <Button tag="a" href="#somwhere">
+      Link, styled like a buttton
     </Button>
   </main>
 );
 ```
 
-Rendering that app will produce this HTML markup:
+Rendering the example `<App>` above will produce this HTML markup:
 
 ```html
 <main>
   <button class="bg-blue white b pa3 br3">Click Me</button>
   <button class="bg-red black pa3 br3">Red Button</button>
+  <a class="bg-blue white b pa3 br3" href="#somewhere">
+    Link, styled like a button
+  </a>
 </main>
 ```
+
+Peruse `example.html` in the repo for an example with many nanostyled components.
 
 ## Nanostyled solves two practical issues with using functional-CSS.
 
@@ -145,6 +160,30 @@ Now any of these props can be overridden with alternative CSS classes:
   A purple and yellow button with normal weight font and sharp corners
 </Button>
 ```
+
+## UMD and CJS builds:
+
+### UMD
+
+You can load `dist/nanostyled.umd.js` to make `window.nanostyled` available in a browser.
+
+### CJS
+
+In an environment that doesn't support ES6 modules, you can require the CJS build:
+
+```js
+const nanostyled = require('nanostyled/dist/nanostyled.cjs.js');
+```
+
+## Performance
+
+In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~ 1.5x more quickly than a similar Button built with styled-components.
+
+## Related Projects
+
+- [Tachyons][tachyons]
+- [Tailwind][tailwind]
+- [Styled Components][styled-components]
 
 [styled-components]: https://www.styled-components.com/
 [adam-wathan]: https://adamwathan.me/css-utility-classes-and-separation-of-concerns/

@@ -1,4 +1,10 @@
-import React from 'react';
+'use strict';
+
+function _interopDefault(ex) {
+  return ex && typeof ex === 'object' && 'default' in ex ? ex['default'] : ex;
+}
+
+var React = _interopDefault(require('react'));
 
 const nanostyled = (tag, styleProps) => {
   let Component = props => {
@@ -26,4 +32,4 @@ const nanostyled = (tag, styleProps) => {
   return Component;
 };
 
-export default nanostyled;
+module.exports = nanostyled;
