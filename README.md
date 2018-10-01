@@ -272,4 +272,5 @@ In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~
 [tailwind]: https://tailwindcss.com/
 [unpkg]: https://unpkg.com/
 [rebass]: https://rebassjs.org
+[codesandbox]: https://codesandbox.io/s/3r8l4rr8p1
 [intro]: https://dev.to/chrisfrank
