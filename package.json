@@ -1,7 +1,7 @@
 {
   "name": "nanostyled",
-  "version": "0.1.5",
-  "description": "A < 1kb library for building styled React components, with CSS-in-JS-like APIs, without CSS in JS",
+  "version": "0.1.6",
+  "description": "Style React components as if with CSS-in-JS, without any CSS-in-JS",
   "main": "index.js",
   "unpkg": "dist/nanostyled.umd.js",
   "scripts": {
