@@ -40,7 +40,12 @@ below:
   - [UMD](#umd)
   - [CJS](#cjs)
 - [Performance](#performance)
+- [Server-Side Rendering](#server-side-rendering)
 - [Related Projects](#related-projects)
+- [## Contributing](#-contributing)
+  - [Bugs](#bugs)
+  - [Pull requests](#pull-requests)
+- [License](#license)
 
 ## Install
 
@@ -282,6 +287,24 @@ additional configuration.
 - [Styled Components][styled-components]
 - [Basscss][basscss]
 
+## Contributing
+
+---
+
+### Bugs
+
+Please open [an issue](https://github.com/chrisfrank/nanostyled/issues) on
+Github.
+
+### Pull requests
+
+PRs are welcome. Please include tests! See `test/nanostyled.test.js` for the
+format to follow.
+
+## License
+
+MIT
+
 [styled-components]: https://www.styled-components.com/
 [adam-wathan]:
   https://adamwathan.me/css-utility-classes-and-separation-of-concerns/
@@ -289,5 +312,5 @@ additional configuration.
 [tailwind]: https://tailwindcss.com/
 [unpkg]: https://unpkg.com/
 [codesandbox]: https://codesandbox.io/s/3r8l4rr8p1
-[intro]: https://dev.to/chrisfrank
+[intro]: https://dev.to/chrisfrank/introducing-nanostyled-2p6k
 [basscss]: http://basscss.com
