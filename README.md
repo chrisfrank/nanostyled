@@ -22,8 +22,9 @@ props:
 
 _Unlike_ a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead,
 it's designed to accompany a **functional CSS framework** like
-[Tachyons][tachyons] or [Tailwind][tailwind]. Nanostyled makes functional CSS
-less verbose and easier to extract into props-controlled components.
+[Tachyons][tachyons], [Tailwind][tailwind], or [Basscss][basscss]. Nanostyled
+makes functional CSS less verbose and easier to extract into props-controlled
+components.
 
 Read the [introductory blog post][intro] for more context, or peruse the docs
 below:
@@ -258,12 +259,28 @@ const nanostyled = require('nanostyled/dist/nanostyled.cjs.js');
 In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~
 1.5x more quickly than a similar Button built with styled-components.
 
+In addition to rendering components more quickly, nanostyled is also ~ two
+orders of magnitude smaller than styled-components over the wire:
+
+| |Nanostyled | styled-components| |min + gzip |0.4 kB |15.3 kB | |3G download
+time |12ms |305ms |
+
+Note, though, that this is only a half-comparison, because nanostyled isn't much
+use without also including a Functional CSS framework.
+
+Still, Tachyons is only 15k, and browsers parse CSS more quickly than JS.
+
+## Server-Side Rendering
+
+When rendering on a server, just use nanostyled normally. It requires no
+additional configuration.
+
 ## Related Projects
 
 - [Tachyons][tachyons]
 - [Tailwind][tailwind]
 - [Styled Components][styled-components]
-- [Rebass][rebass]
+- [Basscss][basscss]
 
 [styled-components]: https://www.styled-components.com/
 [adam-wathan]:
@@ -271,6 +288,6 @@ In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~
 [tachyons]: http://tachyons.io/
 [tailwind]: https://tailwindcss.com/
 [unpkg]: https://unpkg.com/
-[rebass]: https://rebassjs.org
 [codesandbox]: https://codesandbox.io/s/3r8l4rr8p1
 [intro]: https://dev.to/chrisfrank
+[basscss]: http://basscss.com
