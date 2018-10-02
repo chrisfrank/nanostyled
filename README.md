@@ -39,10 +39,11 @@ below:
 - [UMD and CJS builds:](#umd-and-cjs-builds)
   - [UMD](#umd)
   - [CJS](#cjs)
+- [API Reference](#api-reference)
 - [Performance](#performance)
 - [Server-Side Rendering](#server-side-rendering)
 - [Related Projects](#related-projects)
-- [## Contributing](#-contributing)
+- [Contributing](#contributing)
   - [Bugs](#bugs)
   - [Pull requests](#pull-requests)
 - [License](#license)
@@ -259,6 +260,37 @@ build:
 
 ```js
 const nanostyled = require('nanostyled/dist/nanostyled.cjs.js');
+```
+
+## API Reference
+
+`nanostyled(tag, styleProps)`
+
+The `nanostyled` function takes two arguments:
+
+1. tag (String) - the name of an HTML element
+2. styleProps (Object) - an object that maps component props to CSS class names
+
+```jsx
+const Paragraph = nanostyled('p', {
+  font: 'serif',
+  size: 'f4',
+});
+```
+
+`nanostyled` returns a React component, which will render styleProps into the
+HTML `class` attribute, and pass all other props directly to the rendered
+element, _with one exception_:
+
+You can use the special `tag` style prop to change the HTML element rendered by
+a nanostyled component. If, say, you've made a nanostyled `button`, but you want
+it to render as an `a` tag sometimes, do this:
+
+```jsx
+const Button = nanostyled('button', { color: 'white', bg: 'black' });
+
+<Button>A button</Button>
+<Button tag="a">Looks like a button, is a link</Button>
 ```
 
 ## Performance
