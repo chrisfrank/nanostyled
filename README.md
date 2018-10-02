@@ -78,27 +78,29 @@ const App = () => (
     <Button bg="bg-yellow">Yellow Button</Button>
   </div>
 );
+```
 
-/* rendering <App /> produces this markup:
+Rendering `<App />` produces this markup:
+
+```html
 <div>
   <button class="white bg-blue fw7 br3 pa2 sans-serif f4 bn input-reset">Base Button</button>
   <button class="white bg-yellow fw7 br3 pa2 sans-serif f4 bn input-reset">Yellow Button</button>
 </div>
-*/
 ```
 
-When a `nanostyled(element)` renders, it consumes its style props and merges
-them into an HTML class string, as per above.
+When a nanostyled component renders, it consumes its style props and merges them
+into an HTML class string, as per above.
 
-Which style props to use is up to you. The `<Button>` above has an API that
-would make it easy to restyle color or background-color via the `color` and `bg`
-props, but hard to change other styles without totally rewriting the `base`
-prop.
+Which style props to use is up to you. In the `<Button>` above, it would be
+
+- Easy to change text color via the `color` prop
+- Easy to change background color via the `bg` prop
+- Hard to change other styles without totally rewriting the `base` prop
 
 ### A more flexible Button
 
-By using more (and more explicit) style props, we can make a more flexible
-button:
+By using more style props, we can make a more flexible button:
 
 ```jsx
 import nanostyled from 'nanostyled';
@@ -161,8 +163,8 @@ const styleProps = {
 };
 
 /* 
-Why choose those keys, in particular? For everything except `css`, 
-it's because the elements in the UI kit probably will have some default 
+Why choose those keys, in particular? For everything except `css`,
+it's because the elements in the UI kit probably will have some default
 bg, color, margin, padding, or font we'll want to be able to easily override via props.
 
 The `css` prop is an exception. I just like being able to use it instead of `className`.
@@ -264,14 +266,16 @@ const nanostyled = require('nanostyled/dist/nanostyled.cjs.js');
 In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~
 1.5x more quickly than a similar Button built with styled-components.
 
-In addition to rendering components more quickly, nanostyled is also ~ two
+In addition to rendering components more quickly, nanostyled is also almost two
 orders of magnitude smaller than styled-components over the wire:
 
-| |Nanostyled | styled-components| |min + gzip |0.4 kB |15.3 kB | |3G download
-time |12ms |305ms |
+|                   | nanostyled | styled-components |
+| ----------------- | ---------- | ----------------- |
+| size (min + gzip) | 0.4 kB     | 15.3 kB           |
+| 3G download time  | 12ms       | 305ms             |
 
 Note, though, that this is only a half-comparison, because nanostyled isn't much
-use without also including a Functional CSS framework.
+use without also including a functional CSS framework.
 
 Still, Tachyons is only 15k, and browsers parse CSS more quickly than JS.
 
@@ -288,8 +292,6 @@ additional configuration.
 - [Basscss][basscss]
 
 ## Contributing
-
----
 
 ### Bugs
 
