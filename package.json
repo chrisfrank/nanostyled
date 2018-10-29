@@ -40,7 +40,7 @@
     "react-dom": "^16.5.0",
     "react-test-renderer": "^16.5.1",
     "rollup": "^0.66.2",
-    "styled-components": "^4.0.0-beta.9"
+    "styled-components": "^4.0.0"
   },
   "peerDependencies": {
     "react": ">= 15"
