@@ -1,10 +1,10 @@
 import React from 'react';
 
-const nanostyled = (tag, styleProps) => {
-  let Component = props => {
-    let { css, filteredProps } = Object.keys(styleProps).reduce(
+export default function nanostyled(tag, styleProps) {
+  var Component = props => {
+    var { css, filteredProps } = Object.keys(styleProps).reduce(
       (memo, key) => {
-        let style = props[key] === undefined ? styleProps[key] : props[key];
+        var style = props[key] === undefined ? styleProps[key] : props[key];
         if (style) memo.css.push(style);
         delete memo.filteredProps[key];
         return memo;
@@ -15,7 +15,7 @@ const nanostyled = (tag, styleProps) => {
       }
     );
 
-    let passedProps = Object.assign(filteredProps, {
+    var passedProps = Object.assign(filteredProps, {
       className: css.join(' '),
       tag: undefined,
     });
@@ -24,6 +24,4 @@ const nanostyled = (tag, styleProps) => {
 
   Component.displayName = `nanostyled-${tag}`;
   return Component;
-};
-
-export default nanostyled;
+}

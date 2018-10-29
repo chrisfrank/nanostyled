@@ -1,6 +1,6 @@
 {
   "name": "nanostyled",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "Style React components as if with CSS-in-JS, without any CSS-in-JS",
   "main": "index.js",
   "unpkg": "dist/nanostyled.umd.js",

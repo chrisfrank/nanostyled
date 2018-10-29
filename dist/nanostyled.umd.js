@@ -6,11 +6,11 @@
 
   React = React && React.hasOwnProperty('default') ? React['default'] : React;
 
-  const nanostyled = (tag, styleProps) => {
-    let Component = props => {
-      let { css, filteredProps } = Object.keys(styleProps).reduce(
+  function nanostyled(tag, styleProps) {
+    var Component = props => {
+      var { css, filteredProps } = Object.keys(styleProps).reduce(
         (memo, key) => {
-          let style = props[key] === undefined ? styleProps[key] : props[key];
+          var style = props[key] === undefined ? styleProps[key] : props[key];
           if (style) memo.css.push(style);
           delete memo.filteredProps[key];
           return memo;
@@ -21,7 +21,7 @@
         }
       );
 
-      let passedProps = Object.assign(filteredProps, {
+      var passedProps = Object.assign(filteredProps, {
         className: css.join(' '),
         tag: undefined,
       });
@@ -30,7 +30,7 @@
 
     Component.displayName = `nanostyled-${tag}`;
     return Component;
-  };
+  }
 
   return nanostyled;
 
