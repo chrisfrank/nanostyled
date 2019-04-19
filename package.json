@@ -1,16 +1,16 @@
 {
   "name": "nanostyled",
-  "version": "0.2.0",
-  "description": "Style React components as if with CSS-in-JS, without any CSS-in-JS",
+  "version": "0.3.0",
+  "description": "Style React components as if with CSS-in-JS, without CSS-in-JS",
   "main": "index.js",
-  "unpkg": "dist/nanostyled.umd.js",
+  "browser": "index.umd.js",
+  "module": "src/index.js",
   "scripts": {
     "bench": "NODE_ENV=production node test/benchmark.js",
     "precommit": "npm run build && npm run test && pretty-quick --staged",
     "test": "jasmine test/nanostyled.test.js",
-    "build:umd": "rollup index.js --file dist/nanostyled.umd.js --format umd --name nanostyled",
-    "build:cjs": "rollup index.js --file dist/nanostyled.cjs.js --format cjs",
-    "build": "npm run build:umd && npm run build:cjs"
+    "prebuild": "prettier src/**/*.js --write",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,9 @@
   },
   "keywords": [
     "react",
+    "preact",
     "CSS",
-    "css-in-js",
+    "CSS-in-JS",
     "styled-components",
     "atomic CSS",
     "utility css",
@@ -30,24 +31,19 @@
   "author": "Chris Frank",
   "license": "MIT",
   "devDependencies": {
-    "benchmark": "^2.1.4",
-    "husky": "^0.14.3",
-    "jasmine": "^3.2.0",
-    "jest": "^23.6.0",
-    "prettier": "^1.14.3",
-    "pretty-quick": "^1.7.0",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-test-renderer": "^16.5.1",
-    "rollup": "^0.66.2",
-    "styled-components": "^4.0.0"
-  },
-  "peerDependencies": {
-    "react": ">= 15"
+    "benchmark": "^2",
+    "jasmine": "^3",
+    "prettier": "^1",
+    "react": "^16",
+    "react-dom": "^16",
+    "react-test-renderer": "^16",
+    "rollup": "^1",
+    "styled-components": "^4"
   },
   "prettier": {
     "proseWrap": "always",
     "singleQuote": true,
     "trailingComma": "es5"
-  }
+  },
+  "dependencies": {}
 }

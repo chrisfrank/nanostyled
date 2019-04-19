@@ -1,9 +1,5 @@
 'use strict';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = _interopDefault(require('react'));
-
 // wrap nanostyled in a factory that can accept any React-compatible
 // +createElement+ function. Works with React, Preact, Inferno, etc
 function factory(createElement) {
@@ -41,6 +37,4 @@ function assign(obj, props) {
   return obj;
 }
 
-var nanostyled = factory(React.createElement);
-
-module.exports = nanostyled;
+module.exports = factory;

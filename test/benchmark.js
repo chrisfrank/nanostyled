@@ -2,7 +2,7 @@ const React = require('react');
 const TestRenderer = require('react-test-renderer');
 const bm = require('benchmark');
 const styled = require('styled-components');
-const nanostyled = require('../dist/nanostyled.cjs.js');
+const nanostyled = require('../index.js');
 
 const NanoButton = nanostyled('button', {
   padding: 'ph3',

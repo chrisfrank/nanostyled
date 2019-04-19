@@ -1,6 +1,6 @@
 const React = require('react');
 const TestRenderer = require('react-test-renderer');
-const nanostyled = require('../dist/nanostyled.umd.js');
+const nanostyled = require('../index.js');
 
 const renderJSON = (Component, props) =>
   TestRenderer.create(React.createElement(Component, props)).toJSON();
