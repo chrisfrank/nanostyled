@@ -54,7 +54,7 @@ npm install nanostyled
 ## Use
 
 Nanostyled works by mapping _style props_ onto class names from your [atomic CSS
-framework of choice][adam-wathan], like [Tachyons][tachyons] or
+framework][adam-wathan] of choice, like [Tachyons][tachyons] or
 [Tailwind][tailwind].
 
 ### A nanostyled Button
@@ -171,7 +171,7 @@ const Paragraph = nanostyled('p', {
 });
 ```
 
-`nanostyled` returns a React component, which will render styleProps into the
+`nanostyled` returns a component, which will render styleProps into the
 HTML `class` attribute, and pass all other props directly to the rendered
 element, _with one exception_:
 
