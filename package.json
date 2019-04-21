@@ -38,7 +38,7 @@
     "react-dom": "^16",
     "react-test-renderer": "^16",
     "rollup": "^1",
-    "styled-components": "^4"
+    "styled-components": "^4.2"
   },
   "prettier": {
     "proseWrap": "always",

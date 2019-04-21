@@ -1,52 +1,46 @@
 # Nanostyled
 
-Nanostyled is a tiny library (< 1 Kb unminified) for building styled React
-components. It tries to combine the flexible, component-based API of CSS-in-JS
-libraries with the extremely low overhead of plain CSS:
+Nanostyled is a tiny library (< 1 Kb) for building styled UI elements in React
+and Preact.
 
-|            | Low overhead | Flexible, component-based API |
-| ---------- | ------------ | ----------------------------- |
-| Plain CSS  | ✅           | ❌                            |
-| CSS-in-JS  | ❌           | ✅                            |
-| nanostyled | ✅           | ✅                            |
-
-Like the CSS-in-JS libraries that inspired it -- 💕 to
-[styled-components][styled-components] -- nanostyled lets you build UI elements
-with complex default styles, then tweak those styles throughout your app via
-props:
+Like a CSS-in-JS library, nanostyled lets you build Components with complex
+default styles, then tweak those defaults with props:
 
 ```jsx
 <Button>A nice-looking button</Button>
-<Button color="blue">A nice-looking button that is blue.</Button>
+<Button color="blue">A nice-looking button that is blue</Button>
 ```
 
-_Unlike_ a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS. Instead,
-it's designed to accompany a **functional CSS framework** like
-[Tachyons][tachyons], [Tailwind][tailwind], or [Basscss][basscss]. Nanostyled
-makes functional CSS less verbose and easier to extract into props-controlled
-components.
+_Unlike_ a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS, which makes
+your bundle smaller, your components faster, and your server-side-rendering a
+non-issue.
 
-Read the [introductory blog post][intro] for more context, or peruse the docs
-below:
+|            | Low overhead | Props-controlled, component-based API | Zero-config SSR |
+| ---------- | ------------ | ------------------------------------- | --------------- |
+| nanostyled | ✅           | ✅                                    | ✅              |
+| CSS-in-JS  | ❌           | ✅                                    | ❌              |
+| Plain CSS  | ✅           | ❌                                    | ✅              |
 
 ---
 
-- [Install](#install)
-- [Use](#use)
-  - [A nanostyled Button](#a-nanostyled-button)
-  - [A more flexible Button](#a-more-flexible-button)
-- [Sharing style props across multiple components](#sharing-style-props-across-multiple-components)
-- [UMD and CJS builds:](#umd-and-cjs-builds)
-  - [UMD](#umd)
-  - [CJS](#cjs)
-- [API Reference](#api-reference)
-- [Performance](#performance)
-- [Server-Side Rendering](#server-side-rendering)
-- [Related Projects](#related-projects)
-- [Contributing](#contributing)
-  - [Bugs](#bugs)
-  - [Pull requests](#pull-requests)
-- [License](#license)
+<!-- vim-markdown-toc GFM -->
+
+* [Install](#install)
+* [Use](#use)
+  * [A nanostyled Button](#a-nanostyled-button)
+  * [A more flexible Button](#a-more-flexible-button)
+  * [A full starter UI Kit](#a-full-starter-ui-kit)
+* [Use in Preact and other React-like libraries](#use-in-preact-and-other-react-like-libraries)
+* [API Reference](#api-reference)
+* [Performance](#performance)
+* [Server-Side Rendering](#server-side-rendering)
+* [Related Projects](#related-projects)
+* [Contributing](#contributing)
+  * [Bugs](#bugs)
+  * [Pull requests](#pull-requests)
+* [License](#license)
+
+---
 
 ## Install
 
@@ -56,8 +50,9 @@ npm install nanostyled
 
 ## Use
 
-Nanostyled works by mapping _style props_ onto class names from your functional
-CSS framework of choice.
+Nanostyled works by mapping _style props_ onto class names from your [atomic CSS
+framework of choice](adam-wathan), like [Tachyons][tachyons] or
+[Tailwind][tailwind].
 
 ### A nanostyled Button
 
@@ -137,129 +132,24 @@ still use the `className` prop:
 </FlexibleButton>
 ```
 
-## Sharing style props across multiple components
+### A full starter UI Kit
 
-If you're building multi-component UI kits with nanostyled, I recommend sharing
-at least a few basic style props across all your components. Otherwise it gets
-hard to remember which components support, say, a `color` prop, and which ones
-don't.
+Here's a [proof-of-concept UI kit on CodeSandbox][codesandbox].
 
-I usually start here:
+## Use in Preact and other React-like libraries
 
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-import nanostyled from 'nanostyled';
-import 'tachyons/css/tachyons.css';
+Under the hood, nanostyled is built as a library-agnostic factory function.
+To use it in Preact without a compatibility layer, import the factory directly:
 
-// The keys in this styleProps will determine which style props
-// our nanostyled elements will accept:
-const styleProps = {
-  bg: null,
-  color: null,
-  margin: null,
-  padding: null,
-  font: null,
-  css: null,
-};
+```javascript
+import { h } from 'preact';
+import nanoFactory from 'nanostyled/factory';
+const nanostyled = nanoFactory(h);
 
-/* 
-Why choose those keys, in particular? For everything except `css`,
-it's because the elements in the UI kit probably will have some default
-bg, color, margin, padding, or font we'll want to be able to easily override via props.
-
-The `css` prop is an exception. I just like being able to use it instead of `className`.
-*/
-
-// Box will support all styleProps, but only use them when we explicitly pass values
-const Box = nanostyled('div', styleProps);
-/*
-<Box>Hi!</Box>
-renders <div>Hi!</div>
-
-<Box color="red">Hi!</Box>
-renders <div class="red">Hi!</div>
-*/
-
-// Button will also support all styleProps, and will use some of them by default
 const Button = nanostyled('button', {
-  ...styleProps,
   bg: 'bg-blue',
   color: 'white',
-  padding: 'pa2',
-  font: 'fw7',
-  // I use a 'base' prop to declare essential component styles that I'm unlikely to override
-  base: 'input-reset br3 dim pointer bn',
 });
-/*
-<Button>Hi!</Button>
-renders
-<button class="bg-blue white pa2 dim pointer bn input-reset>Hi!</button>
-*/
-
-// Heading uses styleProps, plus some extra props for fine-grained control over typography
-const Heading = nanostyled('h1', {
-  ...styleProps,
-  size: 'f1',
-  weight: 'fw7',
-  tracking: 'tracked-tight',
-  leading: 'lh-title',
-});
-
-// Putting them all together....
-const App = () => (
-  <Box padding="pa3" font="sans-serif">
-    <Heading>Styling with Nanostyled</Heading>
-    <Heading tracking={null} tag="h2" size="f3" weight="fw6">
-      A brief overview
-    </Heading>
-    <Heading
-      tag="h3"
-      weight="fw4"
-      size="f5"
-      tracking={null}
-      css="bt pv3 b--light-gray"
-    >
-      Here are some buttons:
-    </Heading>
-    <Button>Base Button</Button>
-    <Button css="w-100 mv3" padding="pa3" bg="bg-green">
-      Wide Green Padded Button
-    </Button>
-    <Box css="flex">
-      <Button css="w-50" margin="mr2" bg="bg-gold">
-        50% Wide, Gold
-      </Button>
-      <Button css="w-50" margin="ml2" bg="bg-red">
-        50% wide, Red
-      </Button>
-    </Box>
-  </Box>
-);
-
-const rootElement = document.getElementById('root');
-ReactDOM.render(<App />, rootElement);
-```
-
-This full example is [available on CodeSandbox][codesandbox] for you to
-experiment with.
-
-## UMD and CJS builds:
-
-### UMD
-
-You can load `dist/nanostyled.umd.js` to make `window.nanostyled` available in a
-browser.
-
-The UMD build is also available on [unpkg][unpkg]: https://unpkg.com/nanostyled
-
-### CJS
-
-In an environment that doesn't support ES6 modules, you can require the CJS
-build:
-
-```js
-const nanostyled = require('nanostyled/dist/nanostyled.cjs.js');
 ```
 
 ## API Reference
@@ -296,7 +186,7 @@ const Button = nanostyled('button', { color: 'white', bg: 'black' });
 ## Performance
 
 In a rudimentary benchmark (`test/benchmark.js`), a nanostyled Button renders ~
-1.5x more quickly than a similar Button built with styled-components.
+2x more quickly than a similar Button built with styled-components.
 
 In addition to rendering components more quickly, nanostyled is also almost two
 orders of magnitude smaller than styled-components over the wire:
@@ -306,15 +196,9 @@ orders of magnitude smaller than styled-components over the wire:
 | size (min + gzip) | 0.4 kB     | 15.3 kB           |
 | 3G download time  | 12ms       | 305ms             |
 
-Note, though, that this is only a half-comparison, because nanostyled isn't much
-use without also including a functional CSS framework.
-
-Still, Tachyons is only 15k, and browsers parse CSS more quickly than JS.
-
 ## Server-Side Rendering
 
-When rendering on a server, just use nanostyled normally. It requires no
-additional configuration.
+When rendering on a server, just use nanostyled normally.
 
 ## Related Projects
 

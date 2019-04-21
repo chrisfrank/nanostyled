@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Trim README
+- Support IE without polyfills or Babel transforms
 
 ## 0.2 - 2018-10-29
 First public release
