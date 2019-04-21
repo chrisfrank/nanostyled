@@ -3,8 +3,8 @@
 Nanostyled is a tiny library (< 1 Kb) for building styled UI elements in React
 and Preact.
 
-Like a CSS-in-JS library, nanostyled lets you build Components with complex
-default styles, then tweak those defaults with props:
+Like a CSS-in-JS library, nanostyled encapsulates complex styles into simple,
+tweakable components:
 
 ```jsx
 <Button>A nice-looking button</Button>
@@ -35,10 +35,13 @@ non-issue.
 * [Performance](#performance)
 * [Server-Side Rendering](#server-side-rendering)
 * [Related Projects](#related-projects)
+* [Browser Support](#browser-support)
 * [Contributing](#contributing)
   * [Bugs](#bugs)
   * [Pull requests](#pull-requests)
 * [License](#license)
+
+<!-- vim-markdown-toc -->
 
 ---
 
@@ -51,7 +54,7 @@ npm install nanostyled
 ## Use
 
 Nanostyled works by mapping _style props_ onto class names from your [atomic CSS
-framework of choice](adam-wathan), like [Tachyons][tachyons] or
+framework of choice][adam-wathan], like [Tachyons][tachyons] or
 [Tailwind][tailwind].
 
 ### A nanostyled Button
@@ -206,6 +209,10 @@ When rendering on a server, just use nanostyled normally.
 - [Tailwind][tailwind]
 - [Styled Components][styled-components]
 - [Basscss][basscss]
+
+## Browser Support
+Nanostyled aims to run in any browser that implements ES5, including IE 9+.
+if you discover otherwise, please file an issue.
 
 ## Contributing
 
