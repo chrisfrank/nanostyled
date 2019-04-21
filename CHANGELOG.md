@@ -19,6 +19,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     });
     ```
 
+### Changed
+- Rename `props.tag` to `props.as`, to match Styled Components and Emotion.
+  To upgrade, use the new prop name on components that override the default tag:
+  ```jsx
+  // old
+  <Button tag="a">Looks like a button, is a link</Button>
+
+  // new
+  <Button as="a">Looks like a button, is a link</Button>
+  ```
+
+
 ### Fixed
 - Trim README
 - Support IE without polyfills or Babel transforms

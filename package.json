@@ -1,6 +1,6 @@
 {
   "name": "nanostyled",
-  "version": "0.3.1-0",
+  "version": "0.3.1",
   "description": "Style React components as if with CSS-in-JS, without CSS-in-JS",
   "main": "index.js",
   "browser": "index.umd.js",

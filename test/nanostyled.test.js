@@ -70,15 +70,15 @@ function FunctionComponent(props) {
       expect(res.props.style).toEqual(style);
     });
 
-    describe('with a tag prop', () => {
+    describe('with an +as+ prop', () => {
       it('renders the custom tag instead of the default', () => {
-        let res = renderJSON(Button, { tag: 'a' });
+        let res = renderJSON(Button, { as: 'a' });
         expect(res.type).toEqual('a');
       });
 
-      it('filters the tag prop from DOM attributes', () => {
-        let res = renderJSON(Button, { tag: 'a' });
-        expect(res.props.tag).toEqual(undefined);
+      it('filters the +as+ prop from DOM attributes', () => {
+        let res = renderJSON(Button, { as: 'a' });
+        expect(res.props.as).toEqual(undefined);
       });
     });
   });

@@ -175,15 +175,15 @@ const Paragraph = nanostyled('p', {
 HTML `class` attribute, and pass all other props directly to the rendered
 element, _with one exception_:
 
-You can use the special `tag` style prop to change the HTML element rendered by
-a nanostyled component. If, say, you've made a nanostyled `button`, but you want
+You can use the special `as` prop to change the HTML element rendered by a
+nanostyled component. If, say, you've made a nanostyled `button`, but you want
 it to render as an `a` tag sometimes, do this:
 
 ```jsx
 const Button = nanostyled('button', { color: 'white', bg: 'black' });
 
 <Button>A button</Button>
-<Button tag="a">Looks like a button, is a link</Button>
+<Button as="a">Looks like a button, is a link</Button>
 ```
 
 ## Performance

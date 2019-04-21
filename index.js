@@ -24,10 +24,10 @@ function factory(createElement) {
 
       var passedProps = assign(separatedProps.notStyles, {
         className: separatedProps.styles.join(' '),
-        tag: undefined,
+        as: undefined,
       });
 
-      return createElement(props.tag || tag, passedProps);
+      return createElement(props.as || tag, passedProps);
     };
 
     Component.displayName = 'nanostyled-'.concat(tag);
