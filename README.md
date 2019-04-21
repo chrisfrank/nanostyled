@@ -11,9 +11,8 @@ tweakable components:
 <Button color="blue">A nice-looking button that is blue</Button>
 ```
 
-_Unlike_ a CSS-in-JS library, nanostyled doesn't use any CSS-in-JS, which makes
-your bundle smaller, your components faster, and your server-side-rendering a
-non-issue.
+Unlike a CSS-in-JS library, nanostyled doesn't parse CSS in JS, which makes your
+bundle smaller, your components faster, and your server-side-rendering a breeze.
 
 |            | Low overhead | Props-controlled, component-based API | Zero-config SSR |
 | ---------- | ------------ | ------------------------------------- | --------------- |
@@ -53,8 +52,8 @@ npm install nanostyled
 
 ## Use
 
-Nanostyled works by mapping _style props_ onto class names from your [atomic CSS
-framework][adam-wathan] of choice, like [Tachyons][tachyons] or
+Nanostyled works by mapping **style props** onto class names from your
+[atomic CSS framework][adam-wathan] of choice, like [Tachyons][tachyons] or
 [Tailwind][tailwind].
 
 ### A nanostyled Button
