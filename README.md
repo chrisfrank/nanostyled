@@ -207,7 +207,7 @@ When rendering on a server, just use nanostyled normally.
 - [Tachyons][tachyons]
 - [Tailwind][tailwind]
 - [Styled Components][styled-components]
-- [Basscss][basscss]
+- [Tachyons Components](https://github.com/jxnblk/tachyons-components)
 
 ## Browser Support
 Nanostyled aims to run in any browser that implements ES5, including IE 9+.
